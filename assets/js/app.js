@@ -13,6 +13,7 @@ import { initDilutionTool } from "./modules/dilution.js";
 import { initSolutionPrep } from "./modules/solutionPrep.js";
 import { initInventoryManager } from "./modules/inventory.js";
 import { initReportBuilder } from "./modules/reportBuilder.js";
+import { initGasLawsCalculator } from "./modules/gasLaws.js";
 
 const STORAGE_KEYS = {
   THEME: "chemtools-theme"
@@ -116,6 +117,7 @@ function initTools() {
       initMassMoleConverter();
       initPercentComposition(appState.elementsMap);
       initConcentrationTools();
+  initGasLawsCalculator();
       initPhCalculator();
       initIceCalculator(appState.elementsMap);
       initEnthalpyCalculator(appState.elementsMap, enthalpy);

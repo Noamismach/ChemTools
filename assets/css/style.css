@@ -639,6 +639,14 @@ body[data-theme="light"] .toast {
   gap: 0.5rem;
 }
 
+.form-group.is-disabled {
+  opacity: 0.55;
+}
+
+.form-group select {
+  margin-top: -0.3rem;
+}
+
 .tool-form label {
   font-weight: 500;
   color: rgba(225, 233, 255, 0.9);

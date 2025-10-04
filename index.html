@@ -32,6 +32,74 @@
           </button>
         </nav>
         <section class="hero" id="hero">
+
+      <section class="modal" id="modal-gas-laws" role="dialog" aria-modal="true" hidden>
+        <div class="modal__content" role="document">
+          <header class="modal__header">
+            <h2>מחשבון חוק הגז האידיאלי (PV = nRT)</h2>
+            <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+          </header>
+          <div class="modal__body">
+            <form id="form-gas-laws" class="tool-form">
+              <p class="form-hint">
+                הזינו שלושה ערכים לפחות ובחרו את המשתנה שתרצו לחשב. ההמרות ליחידות הבסיס
+                מתבצעות אוטומטית.
+              </p>
+              <div class="form-group">
+                <label for="gas-solve-for">בחרו משתנה לחישוב</label>
+                <select id="gas-solve-for">
+                  <option value="pressure">לחץ (P)</option>
+                  <option value="volume">נפח (V)</option>
+                  <option value="moles">מספר מולים (n)</option>
+                  <option value="temperature">טמפרטורה (T)</option>
+                </select>
+              </div>
+
+              <div class="form-section">
+                <h3 class="form-section__title">נתוני כניסה</h3>
+                <div class="form-grid">
+                  <div class="form-group" data-field="pressure">
+                    <label for="gas-pressure">לחץ</label>
+                    <input type="number" id="gas-pressure" step="any" min="0" />
+                    <select id="gas-pressure-units">
+                      <option value="atm">אטמוספרות (atm)</option>
+                      <option value="kpa">קילו־פסקל (kPa)</option>
+                      <option value="mmhg">מילימטר כספית (mmHg)</option>
+                      <option value="bar">בר (bar)</option>
+                    </select>
+                  </div>
+                  <div class="form-group" data-field="volume">
+                    <label for="gas-volume">נפח</label>
+                    <input type="number" id="gas-volume" step="any" min="0" />
+                    <select id="gas-volume-units">
+                      <option value="l">ליטר (L)</option>
+                      <option value="ml">מיליליטר (mL)</option>
+                    </select>
+                  </div>
+                  <div class="form-group" data-field="moles">
+                    <label for="gas-moles">מספר מולים</label>
+                    <input type="number" id="gas-moles" step="any" min="0" />
+                  </div>
+                  <div class="form-group" data-field="temperature">
+                    <label for="gas-temperature">טמפרטורה</label>
+                    <input type="number" id="gas-temperature" step="any" />
+                    <select id="gas-temperature-units">
+                      <option value="k">קלווין (K)</option>
+                      <option value="c">צלזיוס (°C)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn--primary">חשב</button>
+                <button type="reset" class="btn btn--ghost">איפוס</button>
+              </div>
+              <output id="gas-laws-result" class="tool-output" aria-live="polite"></output>
+            </form>
+          </div>
+        </div>
+      </section>
           <div class="hero__content">
             <h1>כל הכלים שלך ללמידה וחישוב בכימיה</h1>
             <p>
@@ -96,6 +164,11 @@
             <article class="tool-card" data-modal="modal-enthalpy">
               <h3>מחשבון ΔH תגובה</h3>
               <p>חשב ΔH כולל שימוש בערכי ΔHf מקובץ נתונים מקומי.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-gas-laws">
+              <h3>מחשבון חוק הגז האידיאלי</h3>
+              <p>פתרו עבור P, V, n או T לפי PV = nRT עם יחידות ניתנות לבחירה.</p>
               <button class="btn btn--secondary">פתח כלי</button>
             </article>
             <article class="tool-card" data-modal="modal-empirical">
