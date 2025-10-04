@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChemTools – כל הכלים שלך לכימיה</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="app-shell">
+      <header class="app-header">
+        <nav class="navbar">
+          <div class="navbar__logo">⚗️ ChemTools</div>
+          <button class="navbar__toggle" aria-label="פתח תפריט">
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="navbar__links">
+            <li><a href="#hero">בית</a></li>
+            <li><a href="#calculators">מחשבונים</a></li>
+            <li><a href="#lab-tools">כלי מעבדה</a></li>
+            <li><a href="#resources">משאבים</a></li>
+          </ul>
+          <button class="theme-switch" id="theme-toggle" aria-label="החלף מצב תצוגה">
+            <span class="theme-switch__icon">🌙</span>
+            <span class="theme-switch__label">מצב תצוגה</span>
+          </button>
+        </nav>
+        <section class="hero" id="hero">
+          <div class="hero__content">
+            <h1>כל הכלים שלך ללמידה וחישוב בכימיה</h1>
+            <p>
+              ChemTools מאחדת עבורך מחשבונים מתקדמים, עזרי מעבדה וכלי תכנון ניסויים –<br />
+              במה אחת, אינטראקטיבית, מקצועית ומותאמת אישית ללימוד ותרגול כימיה.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#calculators">התחילו לחשב</a>
+              <a class="btn btn--ghost" href="#lab-tools">היכנסו למעבדה</a>
+            </div>
+          </div>
+          <div class="hero__visual" aria-hidden="true">
+            <div class="orbital orbital--one"></div>
+            <div class="orbital orbital--two"></div>
+            <div class="orbital orbital--three"></div>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <section class="section" id="calculators">
+          <div class="section__header">
+            <h2>מחשבונים כימיים מתקדמים</h2>
+            <p>כלי חישוב מדויקים ללימודים, להכנה למבחנים ולמחקר אישי.</p>
+          </div>
+          <div class="card-grid">
+            <article class="tool-card" data-modal="modal-molar-mass">
+              <h3>מחשבון מסה מולרית</h3>
+              <p>הזינו נוסחה כימית וקבלו מסה מולרית מיידית, כולל הידראטים וסוגריים.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-equation-balancer">
+              <h3>מאזן משוואות כימיות</h3>
+              <p>איזון אוטומטי של משוואות תגובה מורכבות ומסועפות.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-mass-moles">
+              <h3>מסה ↔ מולים ↔ מולקולות</h3>
+              <p>המרה בין גרמים, מולים וחלקיקים באמצעות קבוע אבוגדרו.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-percent-composition">
+              <h3>אחוזי יסודות בתרכובת</h3>
+              <p>חשבו את תרומת המסה של כל יסוד בתוך תרכובת.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-concentration">
+              <h3>מחשבון ריכוזים ודילולים</h3>
+              <p>חישוב Molarity, %w/v, ppm ודילולים לפי C₁V₁ = C₂V₂.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-ph">
+              <h3>מחשבון pH / pOH / Ka / Kb</h3>
+              <p>חישובי חומצות ובסיסים חזקים וחלשים לפי ריכוזי Ka/Kb.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-ice">
+              <h3>מחשבון טבלת ICE</h3>
+              <p>חישוב ריכוזים סופיים לשיווי משקל לפי Kc או Kp.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-enthalpy">
+              <h3>מחשבון ΔH תגובה</h3>
+              <p>חשב ΔH כולל שימוש בערכי ΔHf מקובץ נתונים מקומי.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-empirical">
+              <h3>מחשבון נוסחה אמפירית/מולקולרית</h3>
+              <p>חישוב ניסוח אמפירי ומולקולרי מתוך אחוזי יסודות.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="lab-tools">
+          <div class="section__header">
+            <h2>עזרי מעבדה חכמים</h2>
+            <p>תכנון ניסויים, ניהול חומרים וכלי עבודה לשגרת מעבדה מקצועית.</p>
+          </div>
+          <div class="card-grid">
+            <article class="tool-card" data-modal="modal-dilution">
+              <h3>מחשבון דילולים</h3>
+              <p>קבעו כמה להוסיף לדוגמה כדי להגיע לריכוז יעד חדש.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-solution-prep">
+              <h3>כלי הכנת תמיסות</h3>
+              <p>חשבו כמה חומר יש לשקול להכנת תמיסה בריכוז מבוקש.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-inventory">
+              <h3>מנהל חומרים</h3>
+              <p>טבלה לניהול ריכוזים, כמויות ותאריכי הכנה של חומרים.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+            <article class="tool-card" data-modal="modal-report">
+              <h3>יוצר דוחות ניסוי</h3>
+              <p>יצירת דוח PDF מתוך תבנית: מטרה, חומרים, תהליך, תצפיות, מסקנות.</p>
+              <button class="btn btn--secondary">פתח כלי</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="resources">
+          <div class="section__header">
+            <h2>משאבים מומלצים</h2>
+            <p>
+              קיצורי דרך ומידע נוסף להעמקת הידע: טבלאות מחזוריות, מאמרים ותרשימים
+              אינטראקטיביים.
+            </p>
+          </div>
+          <div class="resource-grid">
+            <article class="resource-card">
+              <h3>טבלה מחזורית אינטראקטיבית</h3>
+              <p>קישור לטבלה מחזורית מתקדמת עם פילטרים והסברים.</p>
+              <a class="link" href="https://ptable.com" target="_blank" rel="noopener">פתחו בחלון חדש</a>
+            </article>
+            <article class="resource-card">
+              <h3>מאגר ניסויים מומלץ</h3>
+              <p>אוסף פרוטוקולים ודוגמאות ניסוי עם פירוט משתנים וציוד.</p>
+              <a class="link" href="https://www.rsc.org/learn-chemistry" target="_blank" rel="noopener">כניסה למשאבים</a>
+            </article>
+            <article class="resource-card">
+              <h3>מחשבון יחידות SI</h3>
+              <p>המרה בין יחידות SI עבור פיזיקה וכימיה.</p>
+              <a class="link" href="https://www.nist.gov/pml/weights-and-measures/metric-si-conversion" target="_blank" rel="noopener">מעבר לכלי</a>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        <p>פותח על ידי נועם במסגרת תוכנית ארכימדס · ChemTools © 2025</p>
+      </footer>
+    </div>
+
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="modal-backdrop" data-modal-backdrop hidden></div>
+
+    <!-- מודלים דינמיים לכל הכלים -->
+    <section class="modal" id="modal-molar-mass" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון מסה מולרית</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body" data-modal-body>
+          <form id="form-molar-mass" class="tool-form">
+            <label for="formula-input">נוסחה כימית</label>
+            <input type="text" id="formula-input" name="formula" placeholder="לדוגמה: CuSO4·5H2O" required />
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב מסה מולרית</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <output id="molar-mass-result" class="tool-output" aria-live="polite"></output>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-equation-balancer" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מאזן משוואות כימיות</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-equation-balancer" class="tool-form">
+            <label for="equation-input">משוואת תגובה</label>
+            <input type="text" id="equation-input" placeholder="לדוגמה: Fe + O2 -> Fe2O3" required />
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">איזון</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <output id="equation-result" class="tool-output" aria-live="polite"></output>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-mass-moles" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>המרת מסה ↔ מולים ↔ מולקולות</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-mass-moles" class="tool-form">
+            <div class="form-group">
+              <label for="mass-value">מסה (גרם)</label>
+              <input type="number" id="mass-value" step="any" />
+            </div>
+            <div class="form-group">
+              <label for="moles-value">מולים</label>
+              <input type="number" id="moles-value" step="any" />
+            </div>
+            <div class="form-group">
+              <label for="particles-value">חלקיקים</label>
+              <input type="number" id="particles-value" step="any" />
+            </div>
+            <div class="form-group">
+              <label for="molar-mass-value">מסה מולרית (g/mol)</label>
+              <input type="number" id="molar-mass-value" step="any" required />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב המרה</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <output id="mass-moles-result" class="tool-output" aria-live="polite"></output>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-percent-composition" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>חישוב אחוזי יסודות</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-percent-composition" class="tool-form">
+            <label for="composition-formula">נוסחה כימית</label>
+            <input type="text" id="composition-formula" placeholder="לדוגמה: C6H12O6" required />
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב אחוזים</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="percent-composition-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-concentration" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון ריכוזים ודילולים</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-concentration" class="tool-form">
+            <div class="form-tabs">
+              <button type="button" class="tab-button active" data-tab="molarity">Molarity</button>
+              <button type="button" class="tab-button" data-tab="percent">%w/v</button>
+              <button type="button" class="tab-button" data-tab="ppm">ppm</button>
+              <button type="button" class="tab-button" data-tab="dilution">דילול</button>
+            </div>
+            <div class="tab-panel" data-tab-panel="molarity">
+              <div class="form-group">
+                <label for="molarity-moles">כמות מומס (mol)</label>
+                <input type="number" id="molarity-moles" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="molarity-volume">נפח תמיסה (L)</label>
+                <input type="number" id="molarity-volume" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="molarity-mass">מסה של מומס (g)</label>
+                <input type="number" id="molarity-mass" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="molarity-molar-mass">מסה מולרית (g/mol)</label>
+                <input type="number" id="molarity-molar-mass" step="any" min="0" />
+              </div>
+            </div>
+            <div class="tab-panel" data-tab-panel="percent" hidden>
+              <div class="form-group">
+                <label for="percent-mass">מסה של מומס (g)</label>
+                <input type="number" id="percent-mass" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="percent-volume">נפח תמיסה (mL)</label>
+                <input type="number" id="percent-volume" step="any" min="0" />
+              </div>
+            </div>
+            <div class="tab-panel" data-tab-panel="ppm" hidden>
+              <div class="form-group">
+                <label for="ppm-solute">מסה מומס (mg)</label>
+                <input type="number" id="ppm-solute" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="ppm-solution">מסה/נפח תמיסה (L או kg)</label>
+                <input type="number" id="ppm-solution" step="any" min="0" />
+              </div>
+            </div>
+            <div class="tab-panel" data-tab-panel="dilution" hidden>
+              <div class="form-group">
+                <label for="dilution-c1">C₁ (M)</label>
+                <input type="number" id="dilution-c1" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="dilution-v1">V₁ (L)</label>
+                <input type="number" id="dilution-v1" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="dilution-c2">C₂ (M)</label>
+                <input type="number" id="dilution-c2" step="any" min="0" />
+              </div>
+              <div class="form-group">
+                <label for="dilution-v2">V₂ (L)</label>
+                <input type="number" id="dilution-v2" step="any" min="0" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <output id="concentration-result" class="tool-output" aria-live="polite"></output>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-ph" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון pH / pOH / Ka / Kb</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-ph" class="tool-form">
+            <div class="form-group">
+              <label for="ph-type">סוג התמיסה</label>
+              <select id="ph-type">
+                <option value="strong-acid">חומצה חזקה</option>
+                <option value="strong-base">בסיס חזק</option>
+                <option value="weak-acid">חומצה חלשה</option>
+                <option value="weak-base">בסיס חלש</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ph-concentration">ריכוז (mol/L)</label>
+              <input type="number" id="ph-concentration" step="any" min="0" required />
+            </div>
+            <div class="form-group optional" data-role="ka">
+              <label for="ph-ka">Ka</label>
+              <input type="number" id="ph-ka" step="any" min="0" />
+            </div>
+            <div class="form-group optional" data-role="kb">
+              <label for="ph-kb">Kb</label>
+              <input type="number" id="ph-kb" step="any" min="0" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב pH</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <output id="ph-result" class="tool-output" aria-live="polite"></output>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-ice" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון טבלת ICE</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-ice" class="tool-form">
+            <p class="form-hint">
+              הזינו תגובה מאוזנת (לדוגמה: aA + bB ⇌ cC) ואת הריכוזים ההתחלתיים.
+            </p>
+            <div class="form-group">
+              <label for="ice-equation">משוואת שיווי משקל</label>
+              <input type="text" id="ice-equation" placeholder="לדוגמה: N2 + 3H2 ⇌ 2NH3" required />
+            </div>
+            <div class="form-group">
+              <label for="ice-constant">קבוע שיווי משקל (Kc או Kp)</label>
+              <input type="number" id="ice-constant" step="any" min="0" required />
+            </div>
+            <div class="ice-initial-container" id="ice-initial-container"></div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב ריכוזים</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="ice-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-enthalpy" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון ΔH תגובה</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-enthalpy" class="tool-form">
+            <div class="reaction-sets">
+              <fieldset class="reaction-set" data-role="reactants">
+                <legend>מגיבים</legend>
+                <div class="reaction-lines" id="enthalpy-reactants"></div>
+                <button type="button" class="btn btn--secondary" data-action="add-reactant">הוסף מגיב</button>
+              </fieldset>
+              <fieldset class="reaction-set" data-role="products">
+                <legend>תוצרים</legend>
+                <div class="reaction-lines" id="enthalpy-products"></div>
+                <button type="button" class="btn btn--secondary" data-action="add-product">הוסף תוצר</button>
+              </fieldset>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב ΔH</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="enthalpy-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-empirical" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון נוסחה אמפירית/מולקולרית</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-empirical" class="tool-form">
+            <p class="form-hint">הוסיפו יסודות ואחוזי מסה (או גרמים) לקבלת הנוסחה.</p>
+            <div class="empirical-rows" id="empirical-rows"></div>
+            <button type="button" class="btn btn--secondary" id="empirical-add-row">הוסף יסוד</button>
+            <div class="form-group">
+              <label for="empirical-molar-mass">מסה מולרית (g/mol) לנוסחה מולקולרית (אופציונלי)</label>
+              <input type="number" id="empirical-molar-mass" step="any" min="0" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב נוסחאות</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="empirical-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-dilution" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מחשבון דילולים</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-dilution" class="tool-form">
+            <div class="form-group">
+              <label for="dilution-c1-standalone">C₁ (M)</label>
+              <input type="number" id="dilution-c1-standalone" step="any" min="0" />
+            </div>
+            <div class="form-group">
+              <label for="dilution-v1-standalone">V₁ (L)</label>
+              <input type="number" id="dilution-v1-standalone" step="any" min="0" />
+            </div>
+            <div class="form-group">
+              <label for="dilution-c2-standalone">C₂ (M)</label>
+              <input type="number" id="dilution-c2-standalone" step="any" min="0" />
+            </div>
+            <div class="form-group">
+              <label for="dilution-v2-standalone">V₂ (L)</label>
+              <input type="number" id="dilution-v2-standalone" step="any" min="0" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="dilution-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-solution-prep" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>כלי הכנת תמיסות</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-solution-prep" class="tool-form">
+            <div class="form-group">
+              <label for="prep-concentration">ריכוז מבוקש (M)</label>
+              <input type="number" id="prep-concentration" step="any" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="prep-volume">נפח תמיסה (L)</label>
+              <input type="number" id="prep-volume" step="any" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="prep-molar-mass">מסה מולרית של המומס (g/mol)</label>
+              <input type="number" id="prep-molar-mass" step="any" min="0" required />
+            </div>
+            <div class="form-group">
+              <label for="prep-purity">אחוז טוהר (%)</label>
+              <input type="number" id="prep-purity" step="any" min="0" max="100" value="100" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">חשב</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+            <div id="solution-prep-result" class="tool-output"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-inventory" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>מנהל חומרים</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <div id="inventory-table" class="table-wrapper"></div>
+          <form id="form-inventory" class="tool-form">
+            <div class="form-group">
+              <label for="inventory-name">שם החומר</label>
+              <input type="text" id="inventory-name" required />
+            </div>
+            <div class="form-group">
+              <label for="inventory-concentration">ריכוז (יחידות חופשיות)</label>
+              <input type="text" id="inventory-concentration" />
+            </div>
+            <div class="form-group">
+              <label for="inventory-amount">כמות</label>
+              <input type="text" id="inventory-amount" />
+            </div>
+            <div class="form-group">
+              <label for="inventory-date">תאריך הכנה</label>
+              <input type="date" id="inventory-date" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">שמור חומר</button>
+              <button type="reset" class="btn btn--ghost">נקה</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="modal" id="modal-report" role="dialog" aria-modal="true" hidden>
+      <div class="modal__content" role="document">
+        <header class="modal__header">
+          <h2>יוצר דוחות ניסוי</h2>
+          <button class="modal__close" data-close-modal aria-label="סגור">×</button>
+        </header>
+        <div class="modal__body">
+          <form id="form-report" class="tool-form">
+            <div class="form-group">
+              <label for="report-title">כותרת / מטרה</label>
+              <input type="text" id="report-title" required />
+            </div>
+            <div class="form-group">
+              <label for="report-materials">חומרים וציוד</label>
+              <textarea id="report-materials" placeholder="הזינו כל חומר בשורה נפרדת"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="report-procedure">תהליך</label>
+              <textarea id="report-procedure" placeholder="שלבי ביצוע"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="report-observations">תצפיות</label>
+              <textarea id="report-observations"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="report-conclusion">מסקנות</label>
+              <textarea id="report-conclusion"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn--primary">ייצא ל-PDF</button>
+              <button type="reset" class="btn btn--ghost">איפוס</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
+</html>

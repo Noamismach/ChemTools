@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "source": "NIST Chemistry WebBook / NIST CCCBDB / Active Thermochemical Tables (ATcT)",
+    "updated": "2025-10-05"
+  },
+  "compounds": [
+    { "formula": "H2", "name": "מימן גזי", "deltaHf": 0.0 },
+    { "formula": "O2", "name": "חמצן גזי", "deltaHf": 0.0 },
+    { "formula": "N2", "name": "חנקן גזי", "deltaHf": 0.0 },
+    { "formula": "H2O", "name": "מים נוזליים", "deltaHf": -285.83 },
+    { "formula": "H2O(g)", "name": "מים גזיים", "deltaHf": -241.82 },
+    { "formula": "CO2", "name": "פחמן דו-חמצני (גז)", "deltaHf": -393.51 },
+    { "formula": "CO", "name": "פחמן חד-חמצני (גז)", "deltaHf": -110.53 },
+    { "formula": "CH4", "name": "מתאן (גז)", "deltaHf": -74.87 },
+    { "formula": "C2H6", "name": "אתאן (גז)", "deltaHf": -83.85 },
+    { "formula": "C2H4", "name": "אתילן (גז)", "deltaHf": 52.47 },
+    { "formula": "C2H2", "name": "אצטילן (גז)", "deltaHf": 226.73 },
+    { "formula": "NH3", "name": "אמוניה (גז)", "deltaHf": -45.94 },
+    { "formula": "HCl", "name": "חומצה מימנית / מימן כלורי (גז)", "deltaHf": -92.31 },
+    { "formula": "NaCl", "name": "נתרן כלורי (מלח, מוצק)", "deltaHf": -411.12 },
+    { "formula": "KCl", "name": "אשלגן כלורי (מוצק)", "deltaHf": -436.68 },
+    { "formula": "CaCO3", "name": "פחמת סידן (CaCO3, מוצק, קלציט)", "deltaHf": -1206.9 },
+    { "formula": "CaO", "name": "חמצן סידן (CaO, סיד, מוצק)", "deltaHf": -635.09 },
+    { "formula": "SO2", "name": "תחמוצת גופרית (SO2, גז)", "deltaHf": -296.84 },
+    { "formula": "SO3", "name": "תחמוצת גופרית (SO3, גז)", "deltaHf": -395.77 },
+    { "formula": "H2SO4", "name": "חומצה גופריתית (נוזל)", "deltaHf": -732.73 },
+    { "formula": "CH3OH", "name": "מתנול (נוזל)", "deltaHf": -238.83 },
+    { "formula": "C2H5OH", "name": "אתנול (נוזל)", "deltaHf": -277.0 },
+    { "formula": "C6H6", "name": "בנזן (נוזל)", "deltaHf": 49.0 },
+    { "formula": "C6H12O6", "name": "גלוקוז (מוצק, C6H12O6)", "deltaHf": -1271.1 },
+    { "formula": "N2O", "name": "חנקן חד-חמצני / חנקן חמצתי (N2O, גז)", "deltaHf": 82.05 },
+    { "formula": "NO2", "name": "חנקן דו-חמצני (NO2, גז)", "deltaHf": 33.18 },
+    { "formula": "NO", "name": "חנקן חד-חמצני (NO, גז)", "deltaHf": 90.29 },
+    { "formula": "HCN", "name": "חומצה ציאנידית / מימן ציאנידי (HCN, גז)", "deltaHf": 135.14 },
+    { "formula": "O3", "name": "אוזון (O3, גז)", "deltaHf": 142.67 }
+  ]
+}
