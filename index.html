@@ -581,26 +581,135 @@
         </header>
         <div class="modal__body">
           <form id="form-report" class="tool-form">
-            <div class="form-group">
-              <label for="report-title">כותרת / מטרה</label>
-              <input type="text" id="report-title" required />
+            <div class="form-section">
+              <h3 class="form-section__title">פרטי ניסוי</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="report-title">כותרת / מטרה</label>
+                  <input type="text" id="report-title" required />
+                </div>
+                <div class="form-group">
+                  <label for="report-date">תאריך ביצוע</label>
+                  <input type="date" id="report-date" />
+                </div>
+                <div class="form-group">
+                  <label for="report-author">עורך הדוח / צוות</label>
+                  <input type="text" id="report-author" placeholder="שם פרטי ומשפחה או צוות" />
+                </div>
+                <div class="form-group">
+                  <label for="report-supervisor">מנחה / מורה</label>
+                  <input type="text" id="report-supervisor" placeholder="שם המנחה" />
+                </div>
+                <div class="form-group">
+                  <label for="report-location">מיקום / מעבדה</label>
+                  <input type="text" id="report-location" placeholder="המעבדה או המוסד" />
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="report-materials">חומרים וציוד</label>
-              <textarea id="report-materials" placeholder="הזינו כל חומר בשורה נפרדת"></textarea>
+
+            <div class="form-section">
+              <h3 class="form-section__title">השערה ומשתנים</h3>
+              <div class="form-group">
+                <label for="report-hypothesis">השערה</label>
+                <textarea id="report-hypothesis" placeholder="הגדירו את ההשערה המרכזית של הניסוי"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="report-variables">משתנים</label>
+                <textarea
+                  id="report-variables"
+                  placeholder="עצמאי: ...\nתלוי: ...\nמבוקר: ..."
+                ></textarea>
+                <p class="form-hint">כתבו כל משתנה בשורה נפרדת לקבלת הצגה נקייה.</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="report-procedure">תהליך</label>
-              <textarea id="report-procedure" placeholder="שלבי ביצוע"></textarea>
+
+            <div class="form-section">
+              <h3 class="form-section__title">חומרים וציוד</h3>
+              <p class="form-hint">הזינו כל רכיב בשורה נפרדת. ניתן לציין כמויות ודרגת טוהר.</p>
+              <textarea id="report-materials" placeholder="לדוגמה: 50 mL חומצה הידרוכלורית 0.1M"></textarea>
             </div>
-            <div class="form-group">
-              <label for="report-observations">תצפיות</label>
-              <textarea id="report-observations"></textarea>
+
+            <div class="form-section">
+              <h3 class="form-section__title">תיאור תהליך</h3>
+              <div class="form-group">
+                <label for="report-procedure">שלבי ביצוע</label>
+                <textarea
+                  id="report-procedure"
+                  placeholder="שלבי עבודה מפורטים, כולל מדידות חשובות וזמני המתנה"
+                ></textarea>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="report-conclusion">מסקנות</label>
-              <textarea id="report-conclusion"></textarea>
+
+            <div class="form-section">
+              <h3 class="form-section__title">נתונים ומדידות</h3>
+              <div class="inline-form" data-report-data-controls>
+                <div class="form-group">
+                  <label for="report-data-metric">מדד</label>
+                  <input type="text" id="report-data-metric" placeholder="לדוגמה: זמן" />
+                </div>
+                <div class="form-group">
+                  <label for="report-data-value">ערך</label>
+                  <input type="text" id="report-data-value" placeholder="לדוגמה: 12.4" />
+                </div>
+                <div class="form-group">
+                  <label for="report-data-units">יחידות</label>
+                  <input type="text" id="report-data-units" placeholder="שניות, גרם וכו'" />
+                </div>
+                <div class="form-group">
+                  <label for="report-data-notes">הערות</label>
+                  <input type="text" id="report-data-notes" placeholder="מדידה חריגה, טמפרטורה..." />
+                </div>
+                <button type="button" class="btn btn--secondary" id="report-data-add">הוסף למדידות</button>
+              </div>
+              <div class="data-table" aria-live="polite">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">מדד</th>
+                      <th scope="col">ערך</th>
+                      <th scope="col">יחידות</th>
+                      <th scope="col">הערות</th>
+                      <th scope="col" class="table-actions">פעולות</th>
+                    </tr>
+                  </thead>
+                  <tbody data-report-data-body>
+                    <tr class="data-empty">
+                      <td colspan="6">טרם נוספו מדידות – הוסיפו נתונים לקבלת טבלה בדוח.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
+
+            <div class="form-section">
+              <h3 class="form-section__title">תצפיות וניתוח</h3>
+              <div class="form-group">
+                <label for="report-observations">תצפיות בזמן הניסוי</label>
+                <textarea id="report-observations" placeholder="שינויים בצבע, טמפרטורה, ריחות ועוד"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="report-analysis">ניתוח תוצאות</label>
+                <textarea id="report-analysis" placeholder="פרשנות, מגמות, חישובים מרכזיים"></textarea>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3 class="form-section__title">סיכום, בטיחות ומקורות</h3>
+              <div class="form-group">
+                <label for="report-conclusion">מסקנות</label>
+                <textarea id="report-conclusion" placeholder="סיכום קצר של המסקנות"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="report-safety">הערות בטיחות</label>
+                <textarea id="report-safety" placeholder="סיכוני בטיחות, ציוד מגן, תקלות"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="report-references">מקורות / ביבליוגרפיה</label>
+                <textarea id="report-references" placeholder="כתבו כל מקור בשורה נפרדת"></textarea>
+              </div>
+            </div>
+
             <div class="form-actions">
               <button type="submit" class="btn btn--primary">ייצא ל-PDF</button>
               <button type="reset" class="btn btn--ghost">איפוס</button>
