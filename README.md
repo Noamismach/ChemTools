@@ -41,21 +41,34 @@ It offers a smooth, responsive interface with a wide set of calculators, laborat
 
 ---
 
-## 🧩 Folder Structure
+## Folder Structure
 
-chem/
-│ index.html ← Main SPA and modals
-│ README.md
-├─ assets/
-│ ├─ css/style.css ← Styling, responsiveness, dark/light mode
-│ ├─ data/
-│ │ elements.json ← Periodic table data
-│ │ enthalpy.json ← Reaction ΔH° dataset
-│ └─ js/
-│ app.js ← Core initialization & UI control
-│ utils/… ← Shared logic (Math, Chemistry, Toast, etc.)
-│ modules/… ← Individual calculators and lab tools
+The project is organized for clarity and modularity:
 
+ChemTools/
+│
+├─ index.html # Main single-page application (SPA) file
+├─ README.md
+│
+└─ assets/
+├─ css/
+│ └─ style.css # Main stylesheet: layout, themes, responsiveness
+│
+├─ data/
+│ ├─ elements.json # Periodic table data (symbol, name, atomic mass)
+│ └─ enthalpy.json # Standard enthalpy (ΔH°) values for reactions
+│
+└─ js/
+├─ app.js # Core initialization and UI management
+├─ utils/ # Shared logic: math, chemistry, toast, data loader
+└─ modules/ # Independent calculators and lab tools
+
+Each calculator or tool is self-contained inside the `modules/` directory,  
+and utility scripts in `utils/` handle shared features such as parsing, validation, and UI feedback.
+
+
+Each calculator or tool is self-contained inside the `modules/` directory,  
+and utility scripts in `utils/` handle shared features such as parsing, validation, and UI feedback.
 ---
 
 ## 🚀 Quick Start
