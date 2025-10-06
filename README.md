@@ -1,65 +1,110 @@
-# ChemTools
+<div align="center">
 
-ChemTools הוא יישום אינטרנט ב־HTML/CSS/JavaScript שמעניק לאנשי מקצוע ולסטודנטים לכימיה אוסף עשיר של מחשבונים וכלי מעבדה בעברית, בממשק חד־עמודי (SPA) ללא צורך ב־backend.
+# 🧪 ChemTools  
+*A Hebrew-first Chemistry Toolkit for Students and Professionals*  
 
-## ✨ מה כלול
+Built with **HTML, CSS, and JavaScript** — a single-page web app (SPA) packed with powerful calculators and lab tools.  
+No backend. No setup. Just open and explore.  
 
-- **ממשק מודרני בעברית (RTL)** עם מצב כהה/בהיר, אנימציות עדינות ועיצוב "Glassmorphism" רספונסיבי.
-- **כרטיסיית מחשבונים**: מסה מולרית (כולל הידרטים), מאזן משוואות, המרות מסה/חומר/חלקיקים, אחוזי הרכב, ריכוזים שונים, חוק הגז האידיאלי (PV = nRT) עם המרות יחידות, pH/pOH/Ka/Kb, טבלת ICE, אנתלפיית תגובה (מקובץ נתונים), נוסחה אמפירית/מולקולרית ועוד.
-- **כלי מעבדה**: חישובי דילול, הכנת תמיסות, ניהול מלאי כימיקלים עם שמירה ב־localStorage ובניית דו"ח ניסוי לייצוא.
-- **ניהול מודאלים ותפריט** ידידותי לנייד, כולל Toastים מותאמים, שמירת העדפות מצב התצוגה ואימות קלטים.
-- **נתוני עזר מקומיים** (`elements.json`, `enthalpy.json`) ויחידות עזר מתמטיות/כימיות לחישובים מורכבים.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-2ea44f?style=for-the-badge&logo=github)](https://noamismach.github.io/ChemTools)
 
-## 🗂️ מבנה תיקייה קצר
+</div>
 
-```
+---
+
+## Overview
+
+**ChemTools** is a modern chemistry toolkit designed entirely in Hebrew (RTL).  
+It offers a smooth, responsive interface with a wide set of calculators, laboratory tools, and data files — all running **locally** inside your browser.
+
+---
+
+## ✨ Key Features
+
+- **Modern UI (RTL)** — responsive Glassmorphism design, dark/light themes, and smooth animations.  
+- **Powerful Calculators**  
+  - Molar Mass (supports hydrates)  
+  - Equation Balancer  
+  - Mass–Mole–Particle Conversions  
+  - Percent Composition  
+  - Concentration and Dilution Tools  
+  - Ideal Gas Law (`PV = nRT`) with unit conversions  
+  - pH / pOH / Ka / Kb / ICE Table Generator  
+  - Reaction Enthalpy (ΔH°) from dataset  
+  - Empirical & Molecular Formula Finder  
+- **Laboratory Tools**  
+  - Chemical Inventory Manager (stored in `localStorage`)  
+  - Solution Preparation Assistant  
+  - Experiment Report Generator (print/export ready)  
+- **Fully Offline** — includes local datasets (`elements.json`, `enthalpy.json`).  
+- **Smart UX** — modals, toasts, saved preferences, and input validation for error-free work.
+
+---
+
+## 🧩 Folder Structure
+
 chem/
-│  index.html            ← עמוד ה־SPA הראשי וכל המודאלים
-│  README.md
+│ index.html ← Main SPA and modals
+│ README.md
 ├─ assets/
-│  ├─ css/style.css      ← עיצוב, תאימות מצב כהה/בהיר ורספונסיביות
-│  ├─ data/
-│  │   elements.json     ← טבלת יסודות לתכונות מולריות
-│  │   enthalpy.json     ← ערכי ΔH° לתגובות נפוצות
-│  └─ js/
-│      app.js            ← אתחול כללי, ניהול תמות ומודאלים
-│      utils/…           ← מודולים לוגיים (Math, Chemistry, Toast ועוד)
-│      modules/…         ← מחשבונים וכלי מעבדה נפרדים
-```
+│ ├─ css/style.css ← Styling, responsiveness, dark/light mode
+│ ├─ data/
+│ │ elements.json ← Periodic table data
+│ │ enthalpy.json ← Reaction ΔH° dataset
+│ └─ js/
+│ app.js ← Core initialization & UI control
+│ utils/… ← Shared logic (Math, Chemistry, Toast, etc.)
+│ modules/… ← Individual calculators and lab tools
 
-## 🚀 התחלה מהירה
+yaml
+Copy code
 
-1. הורידו/שכפלו את התיקייה `chem` למחשב מקומי.
-2. פתחו את `index.html` בדפדפן מודרני (Chromium, Firefox, Edge) כדי להתחיל לעבוד.
+---
 
-### שרת פיתוח אופציונלי
+## 🚀 Quick Start
 
-```powershell
-# התקנת שרת סטטי זמני (דורש Node.js מותקן)
+1. Clone or download the repository:  
+   ```bash
+   git clone https://github.com/noamismach/ChemTools.git
+   cd ChemTools/chem
+Open index.html in any modern browser (Chrome, Edge, Firefox).
+
+Optional: Local Development Server
+bash
+Copy code
+# Requires Node.js
 npx serve .
-```
+Then open the URL shown in the terminal (usually http://localhost:3000) for live reload.
 
-לאחר הרצת הפקודה, היכנסו לכתובת שמודפסת במסך (לרוב `http://localhost:3000`) כדי לעבוד ב־Hot Reload.
+💡 Usage Tips
+Select a calculator card to open its modal.
 
-## 🧪 טיפים לשימוש
+Toasts appear for input errors or successful actions.
 
-- למעבר בין המחשבון/הכלי הרצוי, לחצו על הכרטיס המתאים; המודאל נפתח עם טופס וקוביית תוצאות.
-- Toastים בראש המסך יתריעו על שגיאות קלט או על פעולה מוצלחת (שמירת מלאי, יצוא דו"ח וכו').
-- מצב התצוגה (כהה/בהיר) נשמר ב־`localStorage` כך שהעדפתכם תחזור בטעינה הבאה.
-- מלאי הכימיקלים נשמר מקומית בדפדפן; ניתן לייצא דו"חות באמצעות חלונית ההדפסה המובנית.
+Dark/Light theme preference is saved automatically.
 
-## 🛠️ תחזוקה והרחבה
+Chemical inventory and reports are stored locally and exportable.
 
-- כל מחשבון ממומש כמודול נפרד תחת `assets/js/modules`, כך שניתן להוסיף כלים חדשים בקלות.
-- מודולי העזר ב־`utils` מטפלים בתלות הדדית (חישובי מטריצות, פירוק נוסחאות, Toastים, טעינת נתונים וכו').
-- לשינוי טקסטים או תוויות – רובם קיימים ב־`index.html` ומוגדרים ב־RTL מלא, כולל aria-labels.
+🔧 Extending ChemTools
+Each tool is an independent module under assets/js/modules/.
 
-## 🐞 פתרון תקלות נפוצות
+Shared utilities in utils/ handle parsing, matrices, toast notifications, and data loading.
 
-- **חוסר תצוגת נתונים**: ודאו שהדפדפן מאפשר טעינת קבצי JSON מקומיים. ב־Chrome ייתכן שיהיה צורך בשרת מקומי (ע"ע `npx serve`).
-- **תוצאה לא הגיונית**: שמרו על כתיב כימי מדויק (אות גדולה ליסוד, קטנה לתת־סימן). המערכת תתריע אך אינה מתקנת שמות אוטומטית.
-- **מודאל נעול**: השתמשו בכפתור ה־X או הקישו על הרקע. ניתן גם ללחוץ על `Esc` לסגירה.
+All labels and texts are defined in index.html and fully optimized for RTL and accessibility (aria-labels).
 
-## 📜 רישוי וזכויות
+🐞 Troubleshooting
+Problem	Possible Fix
+Blank or missing data	Some browsers block local JSON — use a local server (npx serve).
+Wrong calculation	Check element case (uppercase for elements). Input validation helps but does not auto-correct.
+Modal stuck open	Use X, click outside, or press Esc.
 
-הפרויקט מסופק "As-Is" לשימוש חינוכי ומעבדתי. ניתן לשכפל ולהתאים לשימוש פנימי; הודו בציטוט המקור בעת הפצה מחוץ לארגון.
+📜 License
+ChemTools is provided “as is” for educational and laboratory use.
+You may copy, modify, or adapt it for internal purposes.
+Please credit the original source when redistributing externally.
+
+<div align="center">
+Developed by Noam Ismach
+Made with ❤️ for chemistry, clarity, and clean code.
+
+</div>
