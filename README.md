@@ -56,9 +56,6 @@ chem/
 │ utils/… ← Shared logic (Math, Chemistry, Toast, etc.)
 │ modules/… ← Individual calculators and lab tools
 
-yaml
-Copy code
-
 ---
 
 ## 🚀 Quick Start
