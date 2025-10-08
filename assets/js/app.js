@@ -49,6 +49,8 @@ const navToggle = document.querySelector(".navbar__toggle");
 const navLinks = document.querySelector(".navbar__links");
 
 const mobileQuery = window.matchMedia("(max-width: 900px)");
+const colorSchemeQuery =
+  typeof window.matchMedia === "function" ? window.matchMedia("(prefers-color-scheme: dark)") : null;
 
 function init() {
   bindNavigation();
@@ -166,24 +168,109 @@ function buildElementsMap(elements) {
 function setTheme(theme) {
   document.body.dataset.theme = theme;
   appState.theme = theme;
-  themeToggle?.setAttribute("data-theme", theme);
-  const icon = theme === "dark" ? "🌙" : "☀️";
-  const iconEl = themeToggle?.querySelector(".theme-switch__icon");
-  if (iconEl) iconEl.textContent = icon;
+  updateThemeToggleUI(theme);
 
   updateMolecularArt(theme);
 }
 
+function updateThemeToggleUI(theme) {
+  if (!themeToggle) return;
+
+  themeToggle.setAttribute("data-theme", theme);
+  themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+
+  const iconEl = themeToggle.querySelector(".theme-switch__icon");
+  if (iconEl) {
+    iconEl.textContent = theme === "dark" ? "🌙" : "☀️";
+  }
+
+  const textEl = themeToggle.querySelector(".theme-switch__text");
+  if (textEl) {
+    textEl.textContent = theme === "dark" ? "מצב כהה" : "מצב בהיר";
+  }
+
+  const nextTheme = theme === "dark" ? "בהיר" : "כהה";
+  const ariaLabel = `החלף למצב ${nextTheme}`;
+  themeToggle.setAttribute("aria-label", ariaLabel);
+  themeToggle.setAttribute("title", ariaLabel);
+}
+
 function hydrateTheme() {
-  setTheme("light");
-  persistTheme("light");
+  const storedTheme = getStoredTheme();
+  if (storedTheme) {
+    setTheme(storedTheme);
+    return;
+  }
+
+  applySystemTheme();
+  registerSystemThemeListener();
 }
 
 function persistTheme(theme) {
   try {
-    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+    if (shouldClearStoredTheme(theme)) {
+      localStorage.removeItem(STORAGE_KEYS.THEME);
+      return;
+    }
+
+    const payload = JSON.stringify({
+      value: theme,
+      source: "user",
+      updatedAt: new Date().toISOString()
+    });
+
+    localStorage.setItem(STORAGE_KEYS.THEME, payload);
   } catch (error) {
     console.warn("לא ניתן לשמור את נושא התצוגה", error);
+  }
+}
+
+function shouldClearStoredTheme(theme) {
+  if (!colorSchemeQuery) return false;
+  const systemTheme = colorSchemeQuery.matches ? "dark" : "light";
+  return systemTheme === theme;
+}
+
+function getStoredTheme() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEYS.THEME);
+    if (!raw) return null;
+
+    if (raw === "light" || raw === "dark") {
+      localStorage.removeItem(STORAGE_KEYS.THEME);
+      return null;
+    }
+
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === "object" && typeof parsed.value === "string") {
+      return parsed.value;
+    }
+
+    localStorage.removeItem(STORAGE_KEYS.THEME);
+    return null;
+  } catch (error) {
+    console.warn("לא ניתן לקרוא את נושא התצוגה", error);
+    return null;
+  }
+}
+
+function applySystemTheme() {
+  const systemTheme = colorSchemeQuery && colorSchemeQuery.matches ? "dark" : "light";
+  setTheme(systemTheme);
+}
+
+function registerSystemThemeListener() {
+  if (!colorSchemeQuery) return;
+
+  const handler = (event) => {
+    if (getStoredTheme()) return;
+    setTheme(event.matches ? "dark" : "light");
+  };
+
+  if (typeof colorSchemeQuery.addEventListener === "function") {
+    colorSchemeQuery.addEventListener("change", handler);
+  } else if (typeof colorSchemeQuery.addListener === "function") {
+    colorSchemeQuery.addListener(handler);
   }
 }
 

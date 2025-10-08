@@ -72,10 +72,11 @@ and utility scripts in `utils/` handle shared features such as parsing, validati
 ## 🚀 Quick Start
 
 1. Clone or download the repository:
-  ```bash
-  git clone https://github.com/noamismach/ChemTools.git
-  cd ChemTools/chem
-  ```
+
+```bash
+git clone https://github.com/noamismach/ChemTools.git
+cd ChemTools/chem
+```
 
 2. Open `index.html` in any modern browser (Chrome, Edge, Firefox).
 
@@ -92,7 +93,7 @@ Select a calculator card to open its modal.
 
 Toasts appear for input errors or successful actions.
 
-Dark/Light theme preference is saved automatically.
+Theme defaults to your device/browser preference on first visit. When you flip the toggle it locks in that choice, and if you switch back to match the device it automatically returns to following the system.
 
 Chemical inventory and reports are stored locally and exportable.
 
@@ -105,11 +106,11 @@ All labels and texts are defined in index.html and fully optimized for RTL and a
 
 🐞 Troubleshooting
 
-| Problem | Possible Fix |
-| --- | --- |
-| Blank or missing data | Some browsers block local JSON — launch a local server (`npx serve`). |
-| Wrong calculation | Check element case (uppercase for elements). Input validation helps but does not auto-correct. |
-| Modal stuck open | Use the close button, click outside, or press `Esc`. |
+| Problem               | Possible Fix                                                                                   |
+| --------------------- | ---------------------------------------------------------------------------------------------- |
+| Blank or missing data | Some browsers block local JSON — launch a local server (`npx serve`).                          |
+| Wrong calculation     | Check element case (uppercase for elements). Input validation helps but does not auto-correct. |
+| Modal stuck open      | Use the close button, click outside, or press `Esc`.                                           |
 
 📜 License
 ChemTools is provided “as is” for educational and laboratory use.

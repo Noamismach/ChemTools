@@ -17,15 +17,29 @@
       <header class="app-header">
         <nav class="navbar">
           <div class="navbar__logo">⚗️ ChemTools</div>
-          <button class="navbar__toggle" aria-label="פתח תפריט">
-            <span></span><span></span><span></span>
-          </button>
           <ul class="navbar__links">
             <li><a href="#hero">בית</a></li>
             <li><a href="#calculators">מחשבונים</a></li>
             <li><a href="#lab-tools">כלי מעבדה</a></li>
             <li><a href="#resources">משאבים</a></li>
           </ul>
+          <div class="navbar__controls">
+            <button
+              id="theme-toggle"
+              class="theme-switch"
+              type="button"
+              aria-label="החלף למצב כהה"
+              title="החלף למצב כהה"
+              aria-pressed="false"
+              data-theme="light"
+            >
+              <span class="theme-switch__icon" aria-hidden="true">☀️</span>
+              <span class="theme-switch__text">מצב בהיר</span>
+            </button>
+            <button class="navbar__toggle" aria-label="פתח תפריט">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
         </nav>
         <section class="hero" id="hero">
 

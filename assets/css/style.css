@@ -684,6 +684,9 @@ body[data-theme="light"] .app-header {
   gap: 1.5rem;
   margin: 0;
   padding: 0;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar__links a {
@@ -729,6 +732,11 @@ body[data-theme="light"] .navbar__links a::after {
   padding: 0.5rem;
 }
 
+.navbar__toggle:focus-visible {
+  outline: 3px solid rgba(142, 116, 255, 0.6);
+  outline-offset: 4px;
+}
+
 .navbar__toggle span {
   width: 1.5rem;
   height: 2px;
@@ -749,6 +757,16 @@ body[data-theme="light"] .navbar__links a::after {
   transform: translateY(-6px) rotate(-45deg);
 }
 
+.navbar__controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar__controls > * {
+  flex-shrink: 0;
+}
+
 .theme-switch {
   display: inline-flex;
   align-items: center;
@@ -765,6 +783,20 @@ body[data-theme="light"] .navbar__links a::after {
 .theme-switch:hover {
   transform: translateY(-2px);
   background: rgba(142, 116, 255, 0.35);
+}
+
+.theme-switch:focus-visible {
+  outline: 3px solid rgba(142, 116, 255, 0.55);
+  outline-offset: 3px;
+}
+
+.theme-switch__icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.theme-switch__text {
+  font-weight: 500;
 }
 
 .hero {
@@ -1659,6 +1691,7 @@ body[data-theme="light"] .table-wrapper button:focus-visible {
     overflow-y: auto;
     padding-block-end: 1.5rem;
     padding-block-end: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    flex: 0 0 auto;
   }
 
   .navbar__links.is-open {
@@ -1671,12 +1704,21 @@ body[data-theme="light"] .table-wrapper button:focus-visible {
     display: flex;
   }
 
+  .navbar__controls {
+    gap: 0.75rem;
+  }
+
   .navbar__links a {
     font-size: 1.1rem;
   }
 
   .theme-switch {
-    margin-inline-start: 1rem;
+    margin-inline-start: 0;
+    font-size: 0.95rem;
+  }
+
+  .theme-switch__text {
+    display: none;
   }
 
   #toast-container {
