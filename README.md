@@ -1,10 +1,11 @@
 <div align="center">
 
-# 🧪 ChemTools  
-*A Hebrew-first Chemistry Toolkit for Students and Professionals*  
+# 🧪 ChemTools
+
+_A Hebrew-first Chemistry Toolkit for Students and Professionals_
 
 Built with **HTML, CSS, and JavaScript** — a single-page web app (SPA) packed with powerful calculators and lab tools.  
-No backend. No setup. Just open and explore.  
+No backend. No setup. Just open and explore.
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-2ea44f?style=for-the-badge&logo=github)](https://noamismach.github.io/ChemTools)
 
@@ -21,22 +22,22 @@ It offers a smooth, responsive interface with a wide set of calculators, laborat
 
 ## ✨ Key Features
 
-- **Modern UI (RTL)** — responsive Glassmorphism design, dark/light themes, and smooth animations.  
-- **Powerful Calculators**  
-  - Molar Mass (supports hydrates)  
-  - Equation Balancer  
-  - Mass–Mole–Particle Conversions  
-  - Percent Composition  
-  - Concentration and Dilution Tools  
-  - Ideal Gas Law (`PV = nRT`) with unit conversions  
-  - pH / pOH / Ka / Kb / ICE Table Generator  
-  - Reaction Enthalpy (ΔH°) from dataset  
-  - Empirical & Molecular Formula Finder  
-- **Laboratory Tools**  
-  - Chemical Inventory Manager (stored in `localStorage`)  
-  - Solution Preparation Assistant  
-  - Experiment Report Generator (print/export ready)  
-- **Fully Offline** — includes local datasets (`elements.json`, `enthalpy.json`).  
+- **Modern UI (RTL)** — responsive Glassmorphism design, dark/light themes, and smooth animations.
+- **Powerful Calculators**
+  - Molar Mass (supports hydrates)
+  - Equation Balancer
+  - Mass–Mole–Particle Conversions
+  - Percent Composition
+  - Concentration and Dilution Tools
+  - Ideal Gas Law (`PV = nRT`) with unit conversions
+  - pH / pOH / Ka / Kb / ICE Table Generator
+  - Reaction Enthalpy (ΔH°) from dataset
+  - Empirical & Molecular Formula Finder
+- **Laboratory Tools**
+  - Chemical Inventory Manager (stored in `localStorage`)
+  - Solution Preparation Assistant
+  - Experiment Report Generator (print/export ready)
+- **Fully Offline** — includes local datasets (`elements.json`, `enthalpy.json`).
 - **Smart UX** — modals, toasts, saved preferences, and input validation for error-free work.
 
 ---
@@ -66,26 +67,26 @@ ChemTools/
 Each calculator or tool is self-contained inside the `modules/` directory,  
 and utility scripts in `utils/` handle shared features such as parsing, validation, and UI feedback.
 
-
-Each calculator or tool is self-contained inside the `modules/` directory,  
-and utility scripts in `utils/` handle shared features such as parsing, validation, and UI feedback.
 ---
 
 ## 🚀 Quick Start
 
-1. Clone or download the repository:  
-   ```bash
-   git clone https://github.com/noamismach/ChemTools.git
-   cd ChemTools/chem
-Open index.html in any modern browser (Chrome, Edge, Firefox).
+1. Clone or download the repository:
+  ```bash
+  git clone https://github.com/noamismach/ChemTools.git
+  cd ChemTools/chem
+  ```
+
+2. Open `index.html` in any modern browser (Chrome, Edge, Firefox).
 
 Optional: Local Development Server
-bash
-Copy code
+
+```bash
 # Requires Node.js
 npx serve .
-Then open the URL shown in the terminal (usually http://localhost:3000) for live reload.
+```
 
+Then open the URL shown in the terminal (usually http://localhost:3000) for live reload.
 💡 Usage Tips
 Select a calculator card to open its modal.
 
@@ -103,10 +104,12 @@ Shared utilities in utils/ handle parsing, matrices, toast notifications, and da
 All labels and texts are defined in index.html and fully optimized for RTL and accessibility (aria-labels).
 
 🐞 Troubleshooting
-Problem	Possible Fix
-Blank or missing data	Some browsers block local JSON — use a local server (npx serve).
-Wrong calculation	Check element case (uppercase for elements). Input validation helps but does not auto-correct.
-Modal stuck open	Use X, click outside, or press Esc.
+
+| Problem | Possible Fix |
+| --- | --- |
+| Blank or missing data | Some browsers block local JSON — launch a local server (`npx serve`). |
+| Wrong calculation | Check element case (uppercase for elements). Input validation helps but does not auto-correct. |
+| Modal stuck open | Use the close button, click outside, or press `Esc`. |
 
 📜 License
 ChemTools is provided “as is” for educational and laboratory use.

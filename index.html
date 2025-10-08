@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body data-theme="dark">
+  <body data-theme="light">
     <div class="app-shell">
       <header class="app-header">
         <nav class="navbar">
@@ -26,10 +26,6 @@
             <li><a href="#lab-tools">כלי מעבדה</a></li>
             <li><a href="#resources">משאבים</a></li>
           </ul>
-          <button class="theme-switch" id="theme-toggle" aria-label="החלף מצב תצוגה">
-            <span class="theme-switch__icon">🌙</span>
-            <span class="theme-switch__label">מצב תצוגה</span>
-          </button>
         </nav>
         <section class="hero" id="hero">
 
@@ -115,6 +111,26 @@
             <div class="orbital orbital--one"></div>
             <div class="orbital orbital--two"></div>
             <div class="orbital orbital--three"></div>
+
+            <div class="hero__visual-scene" data-molecule-scene>
+              <div class="floating-orb orb-1"></div>
+              <div class="floating-orb orb-2"></div>
+              <div class="floating-orb orb-3"></div>
+              <div class="floating-orb orb-4"></div>
+
+              <div class="molecule-art" id="heroMoleculeArt" data-molecule-art>
+                <div class="glow-center"></div>
+                <div class="atom-ring ring-1"></div>
+                <div class="atom-ring ring-2"></div>
+                <div class="atom-ring ring-3"></div>
+                <div class="atom-ring ring-4"></div>
+              </div>
+
+              <div class="formula-display" id="heroMoleculeFormula" data-molecule-formula></div>
+              <div class="molecule-name" id="heroMoleculeName" data-molecule-name></div>
+
+              <canvas id="heroMoleculeCanvas" data-molecule-canvas></canvas>
+            </div>
           </div>
         </section>
       </header>
@@ -237,7 +253,13 @@
       </main>
 
       <footer class="app-footer">
-<p>© 2025 ChemTools · פותח על ידי נועם ישמח משה (Noam Ismach Moshe)</p>
+        <p>© 2025 ChemTools · פותח על ידי נועם ישמח משה (Noam Ismach Moshe)</p>
+        <p>
+          הפרויקט קוד פתוח ומאוחסן ב-
+          <a class="link" href="https://github.com/Noamismach/ChemTools" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+        </p>
       </footer>
     </div>
 
