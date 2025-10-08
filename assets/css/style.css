@@ -340,6 +340,8 @@ body[data-theme="light"] .navbar__links a::after {
   border: none;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .btn--primary {
@@ -663,6 +665,7 @@ body[data-theme="light"] .toast {
   color: inherit;
   font-size: 1rem;
   transition: border 0.3s ease, box-shadow 0.3s ease;
+  touch-action: manipulation;
 }
 
 .tool-form input:focus,
@@ -722,6 +725,7 @@ body[data-theme="light"] .tab-button.active {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .tool-output {
@@ -964,16 +968,212 @@ body[data-theme="light"] .form-hint {
 
   .navbar__links a {
     font-size: 1.1rem;
+    padding: 0.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   .theme-switch {
     margin-inline-start: 1rem;
+    min-height: 44px;
   }
 
   #toast-container {
     inset-inline: 50%;
     transform: translateX(50%);
     inset-block-end: 1rem;
+  }
+
+  /* Better button sizing for mobile */
+  .btn {
+    min-height: 48px;
+    padding: 0.85rem 1.75rem;
+    font-size: 1.05rem;
+  }
+
+  /* Optimize modal for mobile */
+  .modal {
+    padding: 0;
+  }
+
+  .modal__content {
+    max-height: 100vh;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .modal__header {
+    padding: 1rem 1.25rem 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .modal__header h2 {
+    font-size: 1.35rem;
+  }
+
+  .modal__body {
+    padding: 1.25rem;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .modal__close {
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Better form controls for mobile */
+  .tool-form input,
+  .tool-form select,
+  .tool-form textarea {
+    min-height: 48px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.9rem 1rem;
+  }
+
+  .tool-form textarea {
+    min-height: 120px;
+  }
+
+  /* Improve form layout on mobile */
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inline-form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  /* Better card spacing on mobile */
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .tool-card,
+  .resource-card {
+    padding: 1.5rem;
+  }
+
+  /* Hero section optimization */
+  .hero {
+    padding: 2rem 1.25rem;
+    gap: 2rem;
+  }
+
+  .hero__content h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero__content p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  /* Section padding optimization */
+  .section {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .section__header h2 {
+    font-size: 1.75rem;
+  }
+
+  /* Better table handling on mobile */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-table {
+    min-width: 100%;
+  }
+
+  /* Navbar optimization */
+  .navbar {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .navbar__logo {
+    font-size: 1.1rem;
+  }
+
+  /* Form sections more compact on mobile */
+  .form-section {
+    padding: 1rem 1.25rem;
+  }
+
+  .form-section__title {
+    font-size: 1.05rem;
+  }
+
+  /* Better tab buttons on mobile */
+  .tab-button {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+
+  /* Resource grid mobile */
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Toast positioning */
+  #toast-container {
+    inset-inline: 1rem;
+    inset-inline-end: 1rem;
+    transform: none;
+  }
+}
+
+/* Additional mobile refinements for very small screens */
+@media (max-width: 400px) {
+  .hero__content h1 {
+    font-size: 1.75rem;
+  }
+
+  .modal__header h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .section__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .tool-card h3,
+  .resource-card h3 {
+    font-size: 1.15rem;
   }
 }
 
