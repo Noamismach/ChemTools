@@ -95,6 +95,8 @@ Toasts appear for input errors or successful actions.
 
 Theme defaults to your device/browser preference on first visit. When you flip the toggle it locks in that choice, and if you switch back to match the device it automatically returns to following the system.
 
+ΔH reaction calculator auto-fills standard ΔHf° from the built-in dataset (with state-specific suggestions) and lets you override values when needed.
+
 Chemical inventory and reports are stored locally and exportable.
 
 🔧 Extending ChemTools

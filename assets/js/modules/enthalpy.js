@@ -8,7 +8,7 @@ function initEnthalpyCalculator(elementsMap, enthalpyData) {
 
   if (!form || !reactantsContainer || !productsContainer || !resultContainer) return;
 
-  const dataMap = buildEnthalpyMap(enthalpyData);
+  const enthalpyIndex = buildEnthalpyIndex(enthalpyData);
 
   const addReactantButton = form.querySelector('[data-action="add-reactant"]');
   const addProductButton = form.querySelector('[data-action="add-product"]');
@@ -39,11 +39,24 @@ function initEnthalpyCalculator(elementsMap, enthalpyData) {
     addReactionLine(productsContainer, "product");
   }
 
+  form.addEventListener("input", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement)) return;
+
+    if (target.dataset.field === "formula") {
+      handleFormulaChange(target, enthalpyIndex);
+    }
+
+    if (target.dataset.field === "enthalpy") {
+      target.dataset.autofill = "false";
+    }
+  });
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     try {
-      const reactants = readLines(reactantsContainer, dataMap, "מגיב");
-      const products = readLines(productsContainer, dataMap, "תוצר");
+      const reactants = readLines(reactantsContainer, enthalpyIndex, "מגיב");
+      const products = readLines(productsContainer, enthalpyIndex, "תוצר");
       if (reactants.length === 0 || products.length === 0) {
         throw new Error("יש להזין לפחות מגיב אחד ותוצר אחד");
       }
@@ -66,13 +79,32 @@ function initEnthalpyCalculator(elementsMap, enthalpyData) {
   });
 }
 
-function buildEnthalpyMap(enthalpyData) {
-  const map = new Map();
-  if (!enthalpyData?.compounds) return map;
-  enthalpyData.compounds.forEach((item) => {
-    map.set(item.formula, item.deltaHf);
+function buildEnthalpyIndex(enthalpyData) {
+  const byCanonical = new Map();
+  const byBase = new Map();
+  const compounds = Array.isArray(enthalpyData?.compounds) ? enthalpyData.compounds : [];
+
+  compounds.forEach((item) => {
+    if (!item?.formula || typeof item.deltaHf !== "number") return;
+
+    const canonical = canonicalFormula(item.formula);
+    const entry = {
+      formula: item.formula,
+      canonical,
+      base: baseFormula(canonical),
+      deltaHf: item.deltaHf,
+      name: item.name ?? ""
+    };
+
+    byCanonical.set(canonical, entry);
+
+    if (!byBase.has(entry.base)) {
+      byBase.set(entry.base, []);
+    }
+    byBase.get(entry.base).push(entry);
   });
-  return map;
+
+  return { byCanonical, byBase };
 }
 
 function addReactionLine(container, type) {
@@ -92,15 +124,16 @@ function addReactionLine(container, type) {
         </div>
         <div class="form-group">
           <label for="dh-${id}">ΔHf (kJ/mol)</label>
-          <input type="number" id="dh-${id}" data-field="enthalpy" step="any" placeholder="ערך אופציונלי" />
+          <input type="number" id="dh-${id}" data-field="enthalpy" step="any" placeholder="ערך אופציונלי" data-autofill="false" />
         </div>
         <button type="button" class="btn btn--ghost" data-remove-line>הסר</button>
+        <p class="form-hint reaction-line__hint" data-role="hint" aria-live="polite"></p>
       </div>
     `
   );
 }
 
-function readLines(container, dataMap, label) {
+function readLines(container, enthalpyIndex, label) {
   const lines = Array.from(container.querySelectorAll(".reaction-line"));
   return lines.map((line) => {
     const coefficient = Number(line.querySelector('[data-field="coefficient"]').value);
@@ -108,21 +141,38 @@ function readLines(container, dataMap, label) {
       throw new Error(`מקדם לא חוקי עבור ${label}`);
     }
 
-    const formula = line.querySelector('[data-field="formula"]').value.trim();
-    if (!formula) {
+    const rawFormula = line.querySelector('[data-field="formula"]').value.trim();
+    if (!rawFormula) {
       throw new Error(`נוסחה חסרה עבור ${label}`);
     }
 
-    const custom = line.querySelector('[data-field="enthalpy"]').value;
-    let deltaHf = custom !== "" ? Number(custom) : dataMap.get(formula);
-    if (custom !== "" && !Number.isFinite(deltaHf)) {
-      throw new Error(`ערך ΔHf מותאם אישית לא חוקי עבור ${formula}`);
-    }
-    if (custom === "" && deltaHf == null) {
-      throw new Error(`לא נמצא ערך ΔHf עבור ${formula}. הזינו ערך ידני.`);
+    const enthalpyInput = line.querySelector('[data-field="enthalpy"]');
+    const custom = enthalpyInput.value;
+    const canonical = canonicalFormula(rawFormula);
+    const datasetEntry = enthalpyIndex.byCanonical.get(canonical);
+    let deltaHf;
+    let source;
+
+    if (custom !== "") {
+      deltaHf = Number(custom);
+      if (!Number.isFinite(deltaHf)) {
+        throw new Error(`ערך ΔHf מותאם אישית לא חוקי עבור ${rawFormula}`);
+      }
+      source = "manual";
+    } else if (datasetEntry) {
+      deltaHf = datasetEntry.deltaHf;
+      source = "dataset";
+    } else {
+      throw new Error(formatMissingMessage(rawFormula, enthalpyIndex));
     }
 
-    return { coefficient, formula, deltaHf };
+    return {
+      coefficient,
+      formula: datasetEntry?.formula ?? rawFormula,
+      displayName: datasetEntry?.name ?? "",
+      deltaHf,
+      source
+    };
   });
 }
 
@@ -146,7 +196,7 @@ function renderEnthalpyResult(reactants, products, deltaH) {
           <h4>מגיבים</h4>
           <table class="result-table">
             <thead>
-              <tr><th>נוסחה</th><th>מקדם</th><th>ΔHf</th><th>תרומה</th></tr>
+              <tr><th>נוסחה</th><th>מקדם</th><th>ΔHf</th><th>תרומה</th><th>מקור</th></tr>
             </thead>
             <tbody>${reactantRows}</tbody>
           </table>
@@ -155,7 +205,7 @@ function renderEnthalpyResult(reactants, products, deltaH) {
           <h4>תוצרים</h4>
           <table class="result-table">
             <thead>
-              <tr><th>נוסחה</th><th>מקדם</th><th>ΔHf</th><th>תרומה</th></tr>
+              <tr><th>נוסחה</th><th>מקדם</th><th>ΔHf</th><th>תרומה</th><th>מקור</th></tr>
             </thead>
             <tbody>${productRows}</tbody>
           </table>
@@ -165,16 +215,81 @@ function renderEnthalpyResult(reactants, products, deltaH) {
   `;
 }
 
-function rowTemplate({ formula, coefficient, deltaHf }) {
+function rowTemplate({ formula, coefficient, deltaHf, source, displayName }) {
   const contribution = coefficient * deltaHf;
   return `
     <tr>
-      <td>${formula}</td>
+      <td>
+        <span title="${displayName ? displayName : ""}">${formula}</span>
+        ${displayName ? `<div class="result-table__subtitle">${displayName}</div>` : ""}
+      </td>
       <td>${coefficient}</td>
       <td>${deltaHf.toFixed(2)}</td>
       <td>${contribution.toFixed(2)}</td>
+      <td>${source === "dataset" ? "מאגר" : "מותאם"}</td>
     </tr>
   `;
+}
+
+function handleFormulaChange(input, enthalpyIndex) {
+  const line = input.closest(".reaction-line");
+  if (!line) return;
+
+  const enthalpyInput = line.querySelector('[data-field="enthalpy"]');
+  const hint = line.querySelector('[data-role="hint"]');
+
+  if (!enthalpyInput || !hint) return;
+
+  const rawFormula = input.value.trim();
+  if (!rawFormula) {
+    resetAutofill(enthalpyInput, hint);
+    return;
+  }
+
+  const canonical = canonicalFormula(rawFormula);
+  const entry = enthalpyIndex.byCanonical.get(canonical);
+
+  if (entry) {
+    const numericValue = entry.deltaHf;
+    if (!enthalpyInput.value || enthalpyInput.dataset.autofill === "true") {
+      enthalpyInput.value = String(numericValue);
+      enthalpyInput.dataset.autofill = "true";
+    }
+    enthalpyInput.placeholder = String(numericValue);
+    hint.textContent = `ΔHf° = ${numericValue.toFixed(2)} kJ/mol${entry.name ? ` · ${entry.name}` : ""}`;
+  } else {
+    resetAutofill(enthalpyInput, hint);
+  }
+}
+
+function resetAutofill(enthalpyInput, hint) {
+  if (enthalpyInput.dataset.autofill === "true") {
+    enthalpyInput.value = "";
+  }
+  enthalpyInput.placeholder = "ערך אופציונלי";
+  enthalpyInput.dataset.autofill = "false";
+  hint.textContent = "";
+}
+
+function canonicalFormula(formula) {
+  return formula.replace(/\s+/g, "").toLowerCase();
+}
+
+function baseFormula(canonical) {
+  return canonical.replace(/\([^)]*\)/g, "");
+}
+
+function formatMissingMessage(formula, enthalpyIndex) {
+  const canonical = canonicalFormula(formula);
+  const base = baseFormula(canonical);
+  const suggestions = enthalpyIndex.byBase.get(base);
+
+  if (suggestions && suggestions.length > 0) {
+    const options = suggestions.map((entry) => entry.formula).join(", ");
+    return `לא נמצא ערך ΔHf עבור ${formula}. נסו לבחור אחת מהתצורות הבאות: ${options}, או הזינו ערך ידני.`;
+  }
+
+  return `לא נמצא ערך ΔHf עבור ${formula}. ודאו שהנוסחה והמצב הפיזיקלי נכונים או הזינו ערך ידני.`;
 }
 
 function uniqueId() {
